@@ -19,7 +19,7 @@ $(function() {
          * empty. Experiment with this before you get started on
          * the rest of this project. What happens when you change
          * allFeeds in app.js to be an empty array and refresh the
-         * page?
+         * page?  Answer: 1 failure, Error: Expected 0 not to be 0.
          */
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
