@@ -115,7 +115,7 @@ $(function () {
     it('in feed container', function() {
       //get feed container elements
       var feedEntry = $('.feed').children();
-      console.log(feedEntry);
+      //is there at least one entry?
       expect(feedEntry.length).toBeGreaterThan(0);
     });
 
@@ -123,9 +123,37 @@ $(function () {
 
   /* TODO: Write a new test suite named "New Feed Selection" */
 
-  /* TODO: Write a test that ensures when a new feed is loaded
-   * by the loadFeed function that the content actually changes.
-   * Remember, loadFeed() is asynchronous.
-   */
+  describe("New Feed Selection", function() {
+    /* TODO: Write a test that ensures when a new feed is loaded
+    * by the loadFeed function that the content actually changes.
+    * Remember, loadFeed() is asynchronous.
+    */
+
+    //declare variables to hold contents
+    let contents1,
+        contents2;
+
+    //wait for loadFeed() to run and record contents
+    beforeEach(function(done) {
+      loadFeed(1, function() {
+        contents2 = $('h2').text();
+        loadFeed(0, function() {
+          contents1 = $('h2').text();
+          done();
+        });
+      });
+    });
+
+    it("content changes", function() {
+      //check content against previous content
+      console.log(contents1);
+      console.log(contents2);
+      expect(contents1).not.toBe(contents2);
+
+    });
+
+  });
+
+  
 
 });
